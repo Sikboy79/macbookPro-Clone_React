@@ -12,12 +12,13 @@ const ProductViewer = () => {
                     <div className='bg-neutral-300' />
                     <div className='bg-neutral-900' />
                 </div>
-                <div className='size-control'>
+                <div className="size-control">
                     <div><p>14"</p></div>
                     <div><p>16"</p></div>
                 </div>
             </div>
         </div>
+        <p className='text-white text-4xl'>Render Canvas</p>
     </section>
   )
 }
