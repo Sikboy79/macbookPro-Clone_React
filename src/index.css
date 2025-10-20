@@ -23,6 +23,7 @@
 
 * {
   scrollbar-color: var(--color-dark-100) var(--color-black);
+  scroll-behavior:smooth;
 }
 
 :root {
