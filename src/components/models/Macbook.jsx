@@ -8,7 +8,7 @@ import { Color } from 'three';
 export default function MacbookModel(props) {
   const { color, texture, } = useMacbookStore();
   const { nodes, materials, scene } = useGLTF('/models/macbook-transformed.glb')
-  const screen = useVideoTexture(texture);
+  const screen = useVideoTexture(texture)
 
 useEffect(() => {
     scene.traverse((child) => {
@@ -39,8 +39,9 @@ useEffect(() => {
       <mesh geometry={nodes.Object_82.geometry} material={materials.gMtYExgrEUqPfln} rotation={[Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Object_96.geometry} material={materials.PaletteMaterial003} rotation={[Math.PI / 2, 0, 0]} />
       <mesh geometry={nodes.Object_107.geometry} material={materials.JvMFZolVCdpPqjj} rotation={[Math.PI / 2, 0, 0]} />
-      <mesh geometry={nodes.Object_123.geometry} rotation={[Math.PI / 2, 0, 0]} />
+      <mesh geometry={nodes.Object_123.geometry} rotation={[Math.PI / 2, 0, 0]} >
        <meshBasicMaterial map={screen} />
+       </mesh>
       <mesh geometry={nodes.Object_127.geometry} material={materials.ZCDwChwkbBfITSW} rotation={[Math.PI / 2, 0, 0]} />
     </group>
   )
