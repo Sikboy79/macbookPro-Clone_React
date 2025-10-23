@@ -19,7 +19,7 @@ const ModelScroll = () => {
 
   useEffect(() => {
     featureSequence.forEach((feature) => {
-      const v = document.createElement('video');
+      const v = document.createElement("video");
 
       Object.assign(v, {
         src: feature.videoPath,
@@ -32,7 +32,6 @@ const ModelScroll = () => {
       v.load();
     });
   }, []);
-  
 
   useGSAP(() => {
     // 3D MODEL ROTATION ANIMATION
@@ -45,7 +44,7 @@ const ModelScroll = () => {
         pin: true,
       },
     });
-    
+
     // SYNC THE FEATURE CONTENT
     const timeline = gsap.timeline({
       scrollTrigger: {
@@ -53,18 +52,19 @@ const ModelScroll = () => {
         start: "top center",
         end: "bottom top",
         scrub: 1,
-      }
-    })
+      },
+    });
 
     //3D SPIN
     if (groupRef.current) {
       modelTimeline.to(groupRef.current.rotation, {
         y: Math.PI * 2,
-        ease: "power1.inOut"
-      })
+        ease: "power1.inOut",
+      });
     }
 
     //CONTENT AND TEXTURE SYNC
+
     timeline
       .call(() => setTexture("/videos/feature-1.mp4"))
       .to(".box1", { opacity: 1, y: 0, delay: 1 })
@@ -108,17 +108,18 @@ const Features = () => {
       </Canvas>
 
       <div className="absolute inset-0">
-        {features.map((feature, index) => {
+        {features.map((feature, index) => (
           <div
             key={feature.id}
-            className={clsx('box', `box${index + 1}`, feature.styles)}>
-            <img src={feature.icon} alt={feature.highlight}/>
+            className={clsx("box", `box${index + 1}`, feature.styles)}
+          >
+            <img src={feature.icon} alt={feature.highlight} />
             <p>
-                <span className="text-white">{feature.highlight}</span>
-                {feature.text}
+              <span className="text-white">{feature.highlight}</span>
+              {feature.text}
             </p>
-          </div>;
-        })}
+          </div>
+        ))}
       </div>
     </section>
   );
