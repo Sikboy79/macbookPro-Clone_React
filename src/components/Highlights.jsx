@@ -1,28 +1,35 @@
-import { useGSAP } from "@gsap/react";
-import React from "react";
 import { useMediaQuery } from "react-responsive";
+import { useEffect, useRef } from "react";
 import gsap from "gsap";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
+
+gsap.registerPlugin(ScrollTrigger);
 
 const Highlights = () => {
+  const isMobile = useMediaQuery({ query: "(max-width: 10240px)" });
 
-  const isMobile = useMediaQuery({ query: '(max-width: 10240px)' });
+  const highlightsRef = useRef();
 
-  useGSAP (() => {
-    gsap.to(['.left-column', 'right-column'], {
+  useEffect(() => {
+    const left = highlightsRef.current.querySelectorAll(".left-column > div");
+    const right = highlightsRef.current.querySelectorAll(".right-column > div");
+
+    gsap.set([...left, ...right], { y: 50, opacity: 0 });
+    gsap.to([...left, ...right], {
       scrollTrigger: {
-        trigger: '#highlights',
-        start: isMobile ? 'bottom bottom' : 'top top'
+        trigger: highlightsRef.current,
+        start: isMobile ? "bottom bottom" : "top top",
       },
-      y:0,
+      y: 0,
       opacity: 1,
       stagger: 0.5,
       duration: 1,
-      ease: 'power1.inOut'
+      ease: "power1.inOut",
     });
-})
+  }, [isMobile]);
 
   return (
-    <section id="highlights">
+    <section id="highlights" ref={highlightsRef}>
       <h2>There's never been a better time to upgrade.</h2>
       <h3>Here's what you get with the new Macbook Pro.</h3>
       <div className="masonry">
@@ -34,9 +41,8 @@ const Highlights = () => {
           <div>
             <img src="/sun.png" alt="Sun" />
             <p>
-              {" "}
               A stunning <br />
-              Liquid Retna display.
+              Liquid Retina display.
             </p>
           </div>
         </div>
@@ -51,12 +57,8 @@ const Highlights = () => {
           <div>
             <img src="/battery.png" alt="Battery" />
             <p>
-              Up to
-              <span className="green-gradient">
-                {""}14 more hours{""}
-              </span>
-              battery life.
-              <span className="text-dark-100">{""}(up to 24 hours total.)</span>
+              Up to <span className="green-gradient">14 more hours</span> battery
+              life. <span className="text-dark-100">(up to 24 hours total.)</span>
             </p>
           </div>
         </div>

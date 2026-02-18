@@ -4,7 +4,7 @@ const Hero = () => {
 const videoRef = useRef();
 
 useEffect(() => {
-    if(videoRef.current) videoRef.current.playbackRate = 2; // ANIMATION SPEED FOR COMPUTER VIDEO
+    if(videoRef.current) videoRef.current.playbackRate = 2; 
 }, []);
 
   return (
