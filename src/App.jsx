@@ -1,3 +1,5 @@
+
+
 import NavBar from "./components/NavBar";
 import Hero from "./components/Hero";
 import ProductViewer from "./components/ProductViewer";
@@ -14,6 +16,7 @@ gsap.registerPlugin(ScrollTrigger)
 const App = () => {
   return (
     <main>
+      <h1 className="text-red-500 font-bold">Hello Tailwind</h1>
       <NavBar />
       <Hero />
       <ProductViewer />
